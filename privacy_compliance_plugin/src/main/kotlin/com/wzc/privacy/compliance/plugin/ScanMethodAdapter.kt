@@ -1,5 +1,6 @@
 package com.wzc.privacy.compliance.plugin
 
+import com.wzc.privacy.compliance.plugin.utils.Logger
 import com.wzc.privacy.compliance.plugin.utils.ScanSetting
 import org.objectweb.asm.Label
 import org.objectweb.asm.MethodVisitor
@@ -52,10 +53,8 @@ class ScanMethodAdapter(
         isInterface: Boolean
     ) {
         super.visitMethodInsn(opcodeAndSource, owner, name, descriptor, isInterface)
-
         //静态扫描代码
         complianceCodeScanning(owner, name, descriptor)
-
     }
 
 
@@ -70,9 +69,9 @@ class ScanMethodAdapter(
         for (riskMethod in ScanSetting.sRiskMethodsList) {
             if (riskMethod.owner == owner && riskMethod.name == name && riskMethod.descriptor == descriptor) {
                 if (riskMethod.value == null) {
-                    println("⚠合规检测👉👉👉静态代码扫描检测到 " + mTargetClassName + "->" + mMethodName + "方法的第" + mLine + "行在获取" + riskMethod.output)
+                    Logger.d("⚠合规检测👉👉👉静态代码扫描检测到 " + mTargetClassName + "->" + mMethodName + "方法的第" + mLine + "行在获取" + riskMethod.output)
                 } else if (riskMethod.value == mValue) {
-                    println("⚠合规检测👉👉👉静态代码扫描检测到 " + mTargetClassName + "->" + mMethodName + "方法的第" + mLine + "行在获取" + riskMethod.value)
+                    Logger.d("⚠合规检测👉👉👉静态代码扫描检测到 " + mTargetClassName + "->" + mMethodName + "方法的第" + mLine + "行在获取" + riskMethod.value)
                 }
                 if (mInsertLog) {
                     // 插入日志

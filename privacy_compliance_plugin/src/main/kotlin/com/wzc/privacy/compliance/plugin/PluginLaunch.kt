@@ -5,7 +5,6 @@ import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
 import com.wzc.privacy.compliance.plugin.model.PrivacyExtensions
-import com.wzc.privacy.compliance.plugin.utils.Logger
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.provider.ListProperty
@@ -25,7 +24,6 @@ class PluginLaunch : Plugin<Project> {
         val androidComponentsExtension =
             project.extensions.getByType(AndroidComponentsExtension::class.java)
         androidComponentsExtension.onVariants { variant ->
-            Logger.d("wzc==${variant.name}")
             val privacyExtensions =
                 project.extensions.getByName(EXTENSIONS_NAME) as PrivacyExtensions
             variant.instrumentation.apply {
@@ -35,7 +33,7 @@ class PluginLaunch : Plugin<Project> {
                     ) { params ->
                         // parameters configuration
                         params.packageList.set(privacyExtensions.packageNameList)
-                        params.debug.set("debug" == variant.name)
+                        params.debug.set("debug" == variant.buildType)
                         params.insertLog.set(privacyExtensions.insertLog)
                         params.logTag.set(privacyExtensions.logTag)
                     }
@@ -45,7 +43,7 @@ class PluginLaunch : Plugin<Project> {
                     ) { params ->
                         // parameters configuration
                         params.packageList.set(privacyExtensions.packageNameList)
-                        params.debug.set("debug" == variant.name)
+                        params.debug.set("debug" == variant.buildType)
                         params.insertLog.set(privacyExtensions.insertLog)
                         params.logTag.set(privacyExtensions.logTag)
                     }
@@ -80,7 +78,7 @@ class PluginLaunch : Plugin<Project> {
         }
 
         override fun isInstrumentable(classData: ClassData): Boolean {
-            if (parameters.get().debug.get()) {
+            if (!parameters.get().debug.get()) {
                 return false
             }
             parameters.get().packageList.get().forEach {
