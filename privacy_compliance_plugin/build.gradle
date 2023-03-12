@@ -49,12 +49,7 @@ publishing {
             groupId = group
             artifactId = pluginName
             version = versionCode
-        }
-    }
-    repositories {
-        maven {
-            // change to point to your repo, e.g. http://my.org/repo
-            url = "$buildDir/repo"
+            artifact("$buildDir/libs/privacy_compliance_plugin-${version}.jar")
         }
     }
 }
