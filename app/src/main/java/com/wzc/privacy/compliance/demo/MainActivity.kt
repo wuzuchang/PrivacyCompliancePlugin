@@ -1,8 +1,10 @@
 package com.wzc.privacy.compliance.demo
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +17,9 @@ class MainActivity : AppCompatActivity() {
         "xxxx"
     }
 
+    @SuppressLint("HardwareIds")
     private fun getAndroidID(){
         Settings.System.getString(contentResolver, Settings.System.ANDROID_ID)
+        Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
     }
 }

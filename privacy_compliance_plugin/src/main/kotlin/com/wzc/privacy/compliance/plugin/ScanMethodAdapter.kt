@@ -67,13 +67,9 @@ class ScanMethodAdapter(
      * @param descriptor 方法描述
      */
     private fun complianceCodeScanning(owner: String?, name: String?, descriptor: String?) {
-        for (riskMethod in ScanSetting.sRiskMethodsList) {
-            if (riskMethod.owner == owner && riskMethod.name == name && riskMethod.descriptor == descriptor) {
-                if (riskMethod.value == null) {
-                    Logger.d("⚠合规检测👉👉👉静态代码扫描检测到 " + mTargetClassName + "->" + mMethodName + "方法的第" + mLine + "行在获取" + riskMethod.output)
-                } else if (riskMethod.value == mValue) {
-                    Logger.d("⚠合规检测👉👉👉静态代码扫描检测到 " + mTargetClassName + "->" + mMethodName + "方法的第" + mLine + "行在获取" + riskMethod.value)
-                }
+        ScanSetting.sRiskMethodsList.forEach { riskMethod ->
+            if (riskMethod.owner == owner && riskMethod.name == name && riskMethod.descriptor == descriptor && riskMethod.value == mValue) {
+                Logger.d("⚠合规检测👉👉👉静态代码扫描检测到 " + mTargetClassName + "->" + mMethodName + "方法的第" + mLine + "行在获取" + riskMethod.output)
                 if (mInsertLog) {
                     // 插入日志
                     insertLog(owner, name)

@@ -13,7 +13,7 @@ class ScanSetting {
                     "getString",
                     "(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;",
                     "android_id",
-                    null
+                    "android_id"
                 )
             )
             //android id
@@ -23,7 +23,7 @@ class ScanSetting {
                     "getString",
                     "(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;",
                     "android_id",
-                    null
+                    "android_id"
                 )
             )
             //blueMac
@@ -33,7 +33,7 @@ class ScanSetting {
                     "getString",
                     "(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;",
                     "bluetooth_address",
-                    null
+                    "bluetooth_address"
                 )
             )
             //blueMac
@@ -43,7 +43,7 @@ class ScanSetting {
                     "getString",
                     "(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;",
                     "bluetooth_address",
-                    null
+                    "bluetooth_address"
                 )
             )
             //android.bluetooth.BluetoothAdapter.getAddress()
@@ -240,5 +240,5 @@ class ScanSetting {
 
 }
 class RiskMethod(
-    var owner: String, var name: String, var descriptor: String, var value: String?, var output: String?
+    var owner: String, var name: String, var descriptor: String, var value: String?, var output: String
 )
