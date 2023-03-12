@@ -1,13 +1,16 @@
 package com.wzc.privacy.compliance.plugin.utils
 
-
 class ScanSetting {
     companion object {
+        // 需要传参类型的方法，如：Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+        var sSettingsRiskMethodsList = ArrayList<RiskMethod>()
+
+        // 不要要传参类型的方法
         var sRiskMethodsList = ArrayList<RiskMethod>()
 
         init {
             //android id
-            sRiskMethodsList.add(
+            sSettingsRiskMethodsList.add(
                 RiskMethod(
                     "android/provider/Settings\$Secure",
                     "getString",
@@ -17,7 +20,7 @@ class ScanSetting {
                 )
             )
             //android id
-            sRiskMethodsList.add(
+            sSettingsRiskMethodsList.add(
                 RiskMethod(
                     "android/provider/Settings\$System",
                     "getString",
@@ -27,7 +30,7 @@ class ScanSetting {
                 )
             )
             //blueMac
-            sRiskMethodsList.add(
+            sSettingsRiskMethodsList.add(
                 RiskMethod(
                     "android/provider/Settings\$Secure",
                     "getString",
@@ -37,7 +40,7 @@ class ScanSetting {
                 )
             )
             //blueMac
-            sRiskMethodsList.add(
+            sSettingsRiskMethodsList.add(
                 RiskMethod(
                     "android/provider/Settings\$System",
                     "getString",
@@ -81,6 +84,26 @@ class ScanSetting {
                 RiskMethod(
                     "android/telephony/TelephonyManager",
                     "getDeviceId",
+                    "()Ljava/lang/String;",
+                    null,
+                    "imei"
+                )
+            )
+            //android.telephony.TelephonyManager.getImei(int)
+            sRiskMethodsList.add(
+                RiskMethod(
+                    "android/telephony/TelephonyManager",
+                    "getImei",
+                    "(I)Ljava/lang/String;",
+                    null,
+                    "imei"
+                )
+            )
+            //android.telephony.TelephonyManager.getImei()
+            sRiskMethodsList.add(
+                RiskMethod(
+                    "android/telephony/TelephonyManager",
+                    "getImei",
                     "()Ljava/lang/String;",
                     null,
                     "imei"
@@ -238,7 +261,11 @@ class ScanSetting {
         }
     }
 
+    class RiskMethod(
+        var owner: String,
+        var name: String,
+        var descriptor: String,
+        var value: String?,
+        var output: String?
+    )
 }
-class RiskMethod(
-    var owner: String, var name: String, var descriptor: String, var value: String?, var output: String?
-)
