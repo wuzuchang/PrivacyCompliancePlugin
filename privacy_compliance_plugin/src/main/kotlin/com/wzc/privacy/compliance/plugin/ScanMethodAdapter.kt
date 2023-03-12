@@ -37,6 +37,7 @@ class ScanMethodAdapter(
     private var mLogTag: String = logTag
 
     override fun visitLineNumber(line: Int, start: Label?) {
+        mLine = line
         super.visitLineNumber(line, start)
     }
 
