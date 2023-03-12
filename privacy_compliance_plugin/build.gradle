@@ -49,7 +49,7 @@ publishing {
             groupId = group
             artifactId = pluginName
             version = versionCode
-            //artifact("$buildDir/libs/privacy_compliance_plugin-${version}.jar")
+            artifact("$buildDir/libs/privacy_compliance_plugin-${version}.jar")
         }
     }
     repositories {
