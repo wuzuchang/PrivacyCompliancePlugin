@@ -31,10 +31,30 @@ buildscript {
 plugins {
     id 'com.android.application'
     // 合规检测插件
-     id 'com.wzc.privacy_compliance'
+    id 'com.wzc.privacy_compliance'
 }
 //合规检测插件配置项
 compliance{
     packageNameList = ["com.wzc"]
+    insertLog = true
+    logTag = "Test"
 }
 ```
+
+配置项参数说明
+
+| 参数            | 类型    | 含义                                              |
+| --------------- | ------- | ------------------------------------------------- |
+| packageNameList | list    | 需要检测的包名列表                                |
+| insertLog       | Boolean | 是否在检测到隐私合规代码时插入Log，会在运行时打印 |
+| logTag          | String  | 运行时Log打印的TAG                                |
+
+编译时检测结果
+
+![build1](resource\build1.png)
+
+![build2](resource\build2.png)
+
+运行时检测结果
+
+![running](resource\running.png)
