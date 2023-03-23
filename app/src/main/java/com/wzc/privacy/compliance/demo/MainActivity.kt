@@ -11,12 +11,14 @@ import android.telephony.TelephonyManager
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.wzc.privacy.compliance.testlibrary.Test
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.d("wzc==", "imei=${getImei()}, android_id=${getAndroidID()}")
+        Log.d("wzc==", "imei=${getImei()}, " + "android_id=${getAndroidID()}")
+        Test(this)
     }
 
     private fun getImei(): String {
