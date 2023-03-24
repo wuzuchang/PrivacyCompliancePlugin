@@ -51,10 +51,10 @@ compliance{
 
 编译时检测结果
 
-![build1](E:\AndroidStudioProjects\PrivacyComplianceDemo\resource\build1.png)
+<img src="resources/build1.png" >
 
-![build2](E:\AndroidStudioProjects\PrivacyComplianceDemo\resource\build2.png)
+<img src="resources/build2.png" >
 
 运行时检测结果
 
-![running](E:\AndroidStudioProjects\PrivacyComplianceDemo\resource\running.png)
+<img src="resources/running.png" >
