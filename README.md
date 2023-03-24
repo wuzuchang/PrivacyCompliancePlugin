@@ -51,10 +51,10 @@ compliance{
 
 编译时检测结果
 
-<img src="resources/build1.png" >
+<img src="resource/build1.png" >
 
-<img src="resources/build2.png" >
+<img src="resource/build2.png" >
 
 运行时检测结果
 
-<img src="resources/running.png" >
+<img src="resource/running.png" >
