@@ -7,7 +7,6 @@ import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 import org.objectweb.asm.commons.AdviceAdapter
 
-
 class ScanMethodAdapter(
     api: Int,
     methodVisitor: MethodVisitor?,
@@ -35,7 +34,9 @@ class ScanMethodAdapter(
 
     //插入log时的Tag
     private var mLogTag: String = logTag
-
+    override fun visitLabel(label: Label?) {
+        super.visitLabel(label)
+    }
     override fun visitLineNumber(line: Int, start: Label?) {
         mLine = line
         super.visitLineNumber(line, start)

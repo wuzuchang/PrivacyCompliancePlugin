@@ -11,13 +11,13 @@
 
 在项目跟目录下的`setting.gradle`文件中添加以下代码
 
-```
+```groovy
 maven { url 'https://jitpack.io' }
 ```
 
 在项目跟目录下的`build.gradle`文件中添加以下代码
 
-```
+```groovy
 buildscript {
     dependencies {
         classpath 'com.github.wuzuchang:PrivacyCompliancePlugin:1.0.0'
@@ -27,7 +27,7 @@ buildscript {
 
 在app module下的`build.gradle`中添加以下代码
 
-```
+```groovy
 plugins {
     id 'com.android.application'
     // 合规检测插件
@@ -43,9 +43,9 @@ compliance{
 
 配置项参数说明
 
-| 参数            | 类型    | 含义                                              |
-| --------------- | ------- | ------------------------------------------------- |
-| packageNameList | list    | 需要检测的包名列表                                |
+| 参数            | 类型      | 含义                                              |
+| --------------- |---------| ------------------------------------------------- |
+| packageNameList | List    | 需要检测的包名列表                                |
 | insertLog       | Boolean | 是否在检测到隐私合规代码时插入Log，会在运行时打印 |
 | logTag          | String  | 运行时Log打印的TAG                                |
 

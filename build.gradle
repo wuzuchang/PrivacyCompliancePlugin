@@ -6,8 +6,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.github.wuzuchang:PrivacyCompliancePlugin:1.0.0'
-//        classpath 'com.wzc:privacy_compliance:1.0.0'
+//        classpath 'com.github.wuzuchang:PrivacyCompliancePlugin:1.0.0'
+        classpath 'com.wzc:privacy_compliance:1.0.0'
     }
 }
 plugins {
