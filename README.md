@@ -51,10 +51,10 @@ compliance{
 
 编译时检测结果
 
-![build1](resource\build1.png)
+![build1](resource/build1.png)
 
-![build2](resource\build2.png)
+![build2](resource/build2.png)
 
 运行时检测结果
 
-![running](resource\running.png)
+![running](resource/running.png)
