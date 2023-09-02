@@ -33,20 +33,20 @@ class PluginLaunch : Plugin<Project> {
                         ExampleClassVisitorFactory::class.java, InstrumentationScope.ALL
                     ) { params ->
                         // parameters configuration
-                        params.packageList.set(privacyExtensions.packageNameList)
-                        params.debug.set("debug" == variant.buildType)
-                        params.insertLog.set(privacyExtensions.insertLog)
-                        params.logTag.set(privacyExtensions.logTag)
+                        params.packageList = privacyExtensions.packageNameList
+                        params.debug = "debug" == variant.buildType
+                        params.insertLog = privacyExtensions.insertLog
+                        params.logTag = privacyExtensions.logTag
                     }
                 } else if (library) {
                     transformClassesWith(
                         ExampleClassVisitorFactory::class.java, InstrumentationScope.PROJECT
                     ) { params ->
                         // parameters configuration
-                        params.packageList.set(privacyExtensions.packageNameList)
-                        params.debug.set("debug" == variant.buildType)
-                        params.insertLog.set(privacyExtensions.insertLog)
-                        params.logTag.set(privacyExtensions.logTag)
+                        params.packageList = privacyExtensions.packageNameList
+                        params.debug = "debug" == variant.buildType
+                        params.insertLog = privacyExtensions.insertLog
+                        params.logTag = privacyExtensions.logTag
                     }
                 }
                 setAsmFramesComputationMode(FramesComputationMode.COPY_FRAMES)
@@ -56,16 +56,16 @@ class PluginLaunch : Plugin<Project> {
 
     interface ParametersImpl : InstrumentationParameters {
         @get:Internal
-        val packageList: ListProperty<String>
+        var packageList: List<String>
 
         @get:Internal
-        val debug: Property<Boolean>
+        var debug: Boolean
 
         @get:Internal
-        val insertLog: Property<Boolean>
+        var insertLog: Boolean
 
         @get:Internal
-        val logTag: Property<String>
+        var logTag: String
     }
 
     abstract class ExampleClassVisitorFactory : AsmClassVisitorFactory<ParametersImpl> {
@@ -73,17 +73,20 @@ class PluginLaunch : Plugin<Project> {
         override fun createClassVisitor(
             classContext: ClassContext, nextClassVisitor: ClassVisitor
         ): ClassVisitor {
-            val insertLog = parameters.get().insertLog.get()
-            val logTag = parameters.get().logTag.get()
+            val insertLog = parameters.get().insertLog
+            val logTag = parameters.get().logTag
             return ScanClassVisitor(Opcodes.ASM9, nextClassVisitor, insertLog, logTag)
         }
 
         override fun isInstrumentable(classData: ClassData): Boolean {
-            if (!parameters.get().debug.get()) {
+            if (!parameters.get().debug) {
                 return false
             }
-            parameters.get().packageList.get().forEach {
-                return classData.className.startsWith(it)
+            val packageList = parameters.get().packageList
+            for (packageName in packageList) {
+                if (classData.className.startsWith(packageName)) {
+                    return true
+                }
             }
             return false
         }

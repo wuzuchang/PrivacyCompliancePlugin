@@ -27,7 +27,7 @@ dependencies {
 }
 
 def group = 'com.wzc'
-def versionCode = '1.0.0'
+def versionCode = '2.0.0'
 def pluginName = 'privacy_compliance'
 
 //插件配置，这样就不需要创建META-INF/gradle-plugins文件目录了
