@@ -20,7 +20,7 @@ maven { url 'https://jitpack.io' }
 ```groovy
 buildscript {
     dependencies {
-        classpath 'com.github.wuzuchang:PrivacyCompliancePlugin:1.0.0'
+        classpath 'com.github.wuzuchang:PrivacyCompliancePlugin:2.0.0'
     }
 }
 ```
